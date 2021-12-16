@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "nodemon src/index.js",
     "start": "node src/index.js",
+    "fetch": "node scripts/fetch-data.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -18,6 +19,7 @@
     "graphql": "^15.8.0"
   },
   "devDependencies": {
+    "axios": "^0.24.0",
     "nodemon": "^2.0.15"
   }
 }
