@@ -1,4 +1,5 @@
 import { GraphQLInt, GraphQLList, GraphQLObjectType } from 'graphql'
+
 import UserType, { UserTypeHandler } from './queries/users.js'
 
 const RootQueryType = new GraphQLObjectType({
