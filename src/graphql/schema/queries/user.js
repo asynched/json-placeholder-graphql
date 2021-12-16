@@ -1,46 +1,15 @@
 import {
   GraphQLInt,
+  GraphQLList,
   GraphQLNonNull,
   GraphQLObjectType,
   GraphQLString,
 } from 'graphql'
 
+import AddressType from './address.js'
+import AlbumType, { AlbumTypeHandler } from './album.js'
+
 import { getFile } from '../../../utils/file-handler.js'
-
-const GeoLocationType = new GraphQLObjectType({
-  name: 'Geo',
-  description: "Representation of an address' geolocation",
-  fields: {
-    lat: {
-      type: new GraphQLNonNull(GraphQLString),
-    },
-    lng: {
-      type: new GraphQLNonNull(GraphQLString),
-    },
-  },
-})
-
-const AddressType = new GraphQLObjectType({
-  name: 'Address',
-  description: "Representation of the user's address",
-  fields: {
-    street: {
-      type: new GraphQLNonNull(GraphQLString),
-    },
-    suite: {
-      type: new GraphQLNonNull(GraphQLString),
-    },
-    city: {
-      type: new GraphQLNonNull(GraphQLString),
-    },
-    zipcode: {
-      type: new GraphQLNonNull(GraphQLString),
-    },
-    geo: {
-      type: GeoLocationType,
-    },
-  },
-})
 
 const UserType = new GraphQLObjectType({
   name: 'User',
@@ -59,7 +28,11 @@ const UserType = new GraphQLObjectType({
       type: new GraphQLNonNull(GraphQLString),
     },
     address: {
-      type: AddressType,
+      type: new GraphQLNonNull(AddressType),
+    },
+    albums: {
+      type: new GraphQLList(AlbumType),
+      resolve: AlbumTypeHandler.getUserAlbums,
     },
   }),
 })
