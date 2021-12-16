@@ -1,6 +1,6 @@
 # JSON PLACEHOLDER GRAPHQL
 
-A port of the JSON placeholder API to GraphQL
+A port of the JSON placeholder API to GraphQL.
 
 ## Application
 

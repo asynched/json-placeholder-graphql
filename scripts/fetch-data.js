@@ -1,3 +1,4 @@
+import fsLegacy from 'fs'
 import fs from 'fs/promises'
 import axios from 'axios'
 import path from 'path'
@@ -15,4 +16,15 @@ const fetchEndpoint = async (endpoint) => {
   await fs.writeFile(filePath, JSON.stringify(data, null, 2))
 }
 
+const checkIfBaseFolderExists = async () => {
+  const baseFolderExists = fsLegacy.existsSync('data')
+
+  if (baseFolderExists) {
+    return
+  }
+
+  await fs.mkdir('data')
+}
+
+await checkIfBaseFolderExists()
 endpoints.forEach(fetchEndpoint)
