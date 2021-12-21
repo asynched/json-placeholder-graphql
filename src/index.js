@@ -7,6 +7,7 @@ import schema from './graphql/index.js'
 
 const app = express()
 const GraphQLPlaygroundMiddleware = GQLPlayground.default
+const PORT = process.env.PORT || 3333
 
 app.use(getLoggerMiddleware())
 app.use(
@@ -19,4 +20,4 @@ app.use(
 
 app.get('/playground', GraphQLPlaygroundMiddleware({ endpoint: '/graphql' }))
 
-app.listen(3333, () => console.log('Server started on port: 3333'))
+app.listen(PORT, () => console.log(`Server started on port: ${PORT}`))
