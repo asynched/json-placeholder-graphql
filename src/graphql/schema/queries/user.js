@@ -10,6 +10,7 @@ import AddressType from './address.js'
 import AlbumType, { AlbumTypeHandler } from './album.js'
 
 import { getFile } from '../../../utils/file-handler.js'
+import PostType, { PostTypeHandler } from './post.js'
 
 const UserType = new GraphQLObjectType({
   name: 'User',
@@ -34,14 +35,18 @@ const UserType = new GraphQLObjectType({
       type: new GraphQLList(AlbumType),
       resolve: AlbumTypeHandler.getUserAlbums,
     },
+    posts: {
+      type: new GraphQLList(PostType),
+      resolve: PostTypeHandler.getUserPosts,
+    },
   }),
 })
 
 export const UserTypeHandler = {
-  getMultipleUsers: async () => {
+  getUsers: async () => {
     return await getFile('users.json')
   },
-  getASingleUser: async (_source, args) => {
+  getUser: async (_source, args) => {
     const id = args.id
     const users = await getFile('users.json')
     const user = users.find((user) => user.id === id)
