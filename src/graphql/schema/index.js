@@ -10,7 +10,7 @@ const RootQueryType = new GraphQLObjectType({
     getUsers: {
       type: GraphQLList(UserType),
       description: 'Returns a list of all the users in the API',
-      resolve: UserTypeHandler.getMultipleUsers,
+      resolve: UserTypeHandler.getUsers,
     },
     getUser: {
       type: UserType,
@@ -20,7 +20,7 @@ const RootQueryType = new GraphQLObjectType({
           type: GraphQLInt,
         },
       },
-      resolve: UserTypeHandler.getASingleUser,
+      resolve: UserTypeHandler.getUser,
     },
     getAlbums: {
       type: GraphQLList(AlbumType),
